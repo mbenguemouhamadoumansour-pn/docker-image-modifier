@@ -7,7 +7,7 @@ pipeline {
   stages {
     stage('Clone Repo') {
       steps {
-        git url: "${GIT_REPO}", branch: 'main'
+        checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'Identifiant githup', url: 'https://github.com/mbenguemouhamadoumansour-pn/docker-image-modifier.git']])
       }
     }
     stage('Docker Version Check') {
@@ -20,17 +20,7 @@ pipeline {
         sh 'docker build -t custom-node-image .'
       }
     }
-    stage('Push to GitHub') {
-      steps {
-        sh '''
-          git config --global user.email "${EMAIL}"
-          git config --global user.name "Jenkins CI"
-          git add .
-          git commit -m "Image modifiée automatiquement"
-          git push origin main
-        '''
-      }
-    }
+  
   }
   post {
     failure {

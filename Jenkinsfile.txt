@@ -5,7 +5,7 @@ pipeline {
     }
   }
   environment {
-    GIT_REPO = 'https://github.com/<ton-user>/docker-image-modifier.git'
+    GIT_REPO = 'https://github.com/mbenguemouhamadoumansour-pn/docker-image-modifier.git'
     EMAIL = 'mbenguemouhamadoumansour@gmail.com'
   }
   stages {

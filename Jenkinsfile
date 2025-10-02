@@ -1,9 +1,5 @@
 pipeline {
-  agent {
-    docker {
-      image 'node:18'
-    }
-  }
+  agent any
   environment {
     GIT_REPO = 'https://github.com/mbenguemouhamadoumansour-pn/docker-image-modifier.git'
     EMAIL = 'mbenguemouhamadoumansour@gmail.com'
@@ -12,6 +8,11 @@ pipeline {
     stage('Clone Repo') {
       steps {
         git url: "${GIT_REPO}", branch: 'main'
+      }
+    }
+    stage('Docker Version Check') {
+      steps {
+        sh 'docker --version'
       }
     }
     stage('Build Image') {
